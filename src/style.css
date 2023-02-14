@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Rasa:wght@300&display=swap');
+
+@media (max-width:600px) {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+body {
+    background-color: rgb(251, 250, 205);
+    color: rgb(144, 94, 150);
+}
+
+.titulo {
+    font-size: 4rem;
+    font-family: 'Rasa', serif;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin-top: 15px;
+}
+
+.subtitulo {
+    font-family: 'Rasa', serif;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    text-align: center;
+}
+
+.botones {
+    background: rgb(222, 186, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 11rem;
+    height: 3rem;
+    border-radius: 10px;
+    /*border: 1%;*/
+    margin: 30px;
+    margin-left: 25%;
+    font-family: 'Anton', sans-serif;
+    color: rgb(81, 36, 86);
+    font-size: 1rem;
+    font-weight: bold;
+
+}
+
+.inputs {
+    background: rgb(253, 253, 253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 10px;
+    border: none;
+    margin: 25px;
+    margin-left: 18%;
+    font-family: 'Anton', sans-serif;
+    color: rgb(81, 36, 86);
+    font-size: 1rem;
+}
+
+#btnlogInGoogle {
+    background-color: white;
+    color: gray;
+    border: none;
+}
+
+.errors {
+    /*estilo*/
+    color: red;
+}
+
+.hide {
+    display: none;
+}
+.imgContainer {
+    display: none   !important;
+}
+/* estilo de boton google*/
+.googleIcon{
+    /* se agrega imagen desde carpeta como fondo*/
+    background-image: url("img/boton_goo.PNG");
+    /* background position para que la imagen quede centrada, no desaparezca*/
+    background-position:center;
+    /* mismo formato que botones del home*/
+    background-size: contain;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+    margin-left: 18%;
+    background-size: cover;
+
+}
+}
+@media (max-width: 1600px) and (min-width: 601px){
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .homeDiv{
+        align-items: center;
+    }
+    
+    .deskContainer{
+        display: flex;
+        margin: auto;
+        position: absolute;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        
+    }
+    .homeContainer{
+       margin: 50px;
+       padding: 50px;
+       flex-direction: column;
+       display: flex;
+
+    }
+
+    .imgContainer{
+        background-image: url("img/coding.png");
+        width: 40%;
+        height: 70%;
+        background-size: cover;
+        background-position:center;
+        position: relative;
+        background-repeat: no-repeat;
+        margin: auto;
+        padding: 150px;
+
+    }
+
+    .titulo {
+        font-size: 4rem;
+        font-family: 'Rasa', serif;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        margin-top: 15px;
+    }
+    
+    .subtitulo {
+        font-family: 'Rasa', serif;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items:center;
+        text-align: center;
+    }
+    body {
+        background-color: rgb(251, 250, 205);
+        color: rgb(144, 94, 150);
+    }
+    
+    .botones {
+        background: rgb(222, 186, 206);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 11rem;
+        height: 3rem;
+        border-radius: 10px;
+        /*border: 1%;*/
+        margin: 30px;
+        margin-left: 25%;
+        font-family: 'Anton', sans-serif;
+        color: rgb(81, 36, 86);
+        font-size: 1rem;
+        font-weight: bold;
+    
+    }
+    
+    .inputs {
+        background: rgb(253, 253, 253);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 12rem;
+        height: 2rem;
+        border-radius: 10px;
+        border: none;
+        margin: 25px;
+        margin-left: 18%;
+        font-family: 'Anton', sans-serif;
+        color: rgb(81, 36, 86);
+        font-size: 1rem;
+    }
+    
+    #btnlogInGoogle {
+        background-color: white;
+        color: gray;
+        border: none;
+    }
+    
+    .errors {
+        /*estilo*/
+        color: red;
+    }
+    
+    .hide {
+        display: none;
+    }
+    /* icono de boton google */
+    .googleIcon{
+        background-image: url("img/boton_goo.PNG");
+        background-position:center;
+        width: 15rem;
+        height: 3rem;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+        margin: 25px;
+        margin-left: 18%;
+        background-size: cover;
+        
+    }
+
+}
+
+/*tabletas (768px), */
+
+/**********************************************Código del FEED***********************************************/
+.divPadre {
+    border: 1rem;
+    border-color: black;
+}
+#inputPost {
+    border: 1rem;
+    border-color: black;
+}
