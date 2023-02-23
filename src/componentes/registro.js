@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../lib/firebase.js';
+import { signUp } from '../lib/index';
+// import { auth } from '../lib/firebase.js';
 
 export const registro = (onNavigate) => {
   const homeDiv = document.createElement('div');
@@ -22,10 +22,12 @@ export const registro = (onNavigate) => {
   emailErrT.textContent = 'Autenticación inválida';
   // Aquí ponemos clases a los botones
   createAcount.className = 'botones';
-  createAcount.id = 'createAccount';
+  createAcount.id = 'createAcount';
   backButton.className = 'botones';
   inputEmail.className = 'inputs';
   inputEmail.id = 'inputEmail';
+  // id error test
+  generalErr.id = 'generalErr';
   emailErr.classList.add('errors', 'hide');
   emailErr.id = 'emailErr';
   emailErrT.id = 'emailErrT';
@@ -63,7 +65,7 @@ export const registro = (onNavigate) => {
         const Psw = inputPsw.value;
         const User = nameUser.value;
         console.log(email, Psw, User);
-        const userData = await createUserWithEmailAndPassword(auth, email, Psw);
+        const userData = await signUp(email, Psw);
         console.log(userData);
         signUpForm.reset();
         onNavigate('/feed');
@@ -76,6 +78,7 @@ export const registro = (onNavigate) => {
         } else if (error.code === 'auth/weak-password') {
           textMessage = 'Contraseña débil';
         }
+        // else para finalizar errores
         generalErr.textContent = textMessage;
         generalErr.classList.remove('hide');
       }
