@@ -1,13 +1,12 @@
+/* eslint-disable no-use-before-define */
 import { home } from './componentes/home.js';
 import { registro } from './componentes/registro.js';
-import { logIn } from './componentes/logIn.js';
 import { feed } from './componentes/feed.js';
 
 const rootDiv = document.getElementById('root');
 
 const routes = {
   '/': home(onNavigate),
-  '/logIn': logIn(onNavigate),
   '/registro': registro(onNavigate),
   '/feed': feed(onNavigate),
 };

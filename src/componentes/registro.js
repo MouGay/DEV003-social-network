@@ -1,55 +1,57 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../lib/firebase.js';
+import { signUp } from '../lib/index';
+// import { auth } from '../lib/firebase.js';
 
 export const registro = (onNavigate) => {
   const homeDiv = document.createElement('div');
   const title = document.createElement('h2');
-  const buttonNewUser = document.createElement('button');
   const backButton = document.createElement('button');
   const createAcount = document.createElement('button');
   const inputEmail = document.createElement('input');
   const emailErr = document.createElement('div');
+  const emailErrT = document.createElement('div');
   const inputPsw = document.createElement('input');
   const nameUser = document.createElement('input');
   const generalErr = document.createElement('div');
-  const formcontainer = document.createElement('div');
+  const formContainer = document.createElement('div');
   const signUpForm = document.createElement('form');
   title.textContent = '<CiberFem>';
-  buttonNewUser.textContent = 'Entra con tu cuenta';
   backButton.textContent = 'Regresar';
   title.textContent = 'Únete a la comunidad CiberFem';
   createAcount.textContent = 'crea tu usuario';
   emailErr.textContent = 'El email ya está en uso';
+  emailErrT.textContent = 'Autenticación inválida';
   // Aquí ponemos clases a los botones
-  buttonNewUser.className = 'botones';
   createAcount.className = 'botones';
+  createAcount.id = 'createAcount';
   backButton.className = 'botones';
   inputEmail.className = 'inputs';
+  inputEmail.id = 'inputEmail';
+  // id error test
+  generalErr.id = 'generalErr';
   emailErr.classList.add('errors', 'hide');
+  emailErr.id = 'emailErr';
+  emailErrT.id = 'emailErrT';
   inputPsw.className = 'inputs';
+  inputPsw.id = 'inputPsw';
   nameUser.className = 'inputs';
   generalErr.classList.add('errors', 'hide');
   title.className = 'titulo';
-  formcontainer.className = 'formbox';
+  formContainer.className = 'formbox';
   signUpForm.className = 'signUpForm';
   inputEmail.placeholder = 'Ingresa tu email aqui';
   inputPsw.placeholder = 'Ingresa tu contraseña';
   nameUser.placeholder = 'Ingresa Nombre de usuaria';
   inputPsw.type = 'password';
   createAcount.type = 'submit';
-  console.log(signUpForm);
-  console.log(createAcount);
 
-  buttonNewUser.addEventListener('click', () => {
-    onNavigate('/logIn');
-  });
   backButton.addEventListener('click', () => {
     onNavigate('/');
   });
 
   signUpForm.append(inputEmail, emailErr, inputPsw, nameUser, generalErr, createAcount);
-  formcontainer.append(title, signUpForm, backButton, buttonNewUser);
-  homeDiv.append(formcontainer);
+  formContainer.append(title, signUpForm, backButton);
+  homeDiv.append(formContainer);
+
   signUpForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     generalErr.classList.add('hide');
@@ -63,9 +65,10 @@ export const registro = (onNavigate) => {
         const Psw = inputPsw.value;
         const User = nameUser.value;
         console.log(email, Psw, User);
-        const userData = await createUserWithEmailAndPassword(auth, email, Psw);
+        const userData = await signUp(email, Psw);
         console.log(userData);
         signUpForm.reset();
+        onNavigate('/feed');
       } catch (error) {
         let textMessage = 'Ups, ocurrió un error';
         if (error.code === 'auth/email-already-in-use') {
@@ -75,6 +78,7 @@ export const registro = (onNavigate) => {
         } else if (error.code === 'auth/weak-password') {
           textMessage = 'Contraseña débil';
         }
+        // else para finalizar errores
         generalErr.textContent = textMessage;
         generalErr.classList.remove('hide');
       }
