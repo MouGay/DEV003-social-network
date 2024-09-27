@@ -12,8 +12,10 @@ import {
   addDoc,
   getDoc,
   query,
-  where,
   getDocs,
+  onSnapshot,
+  updateDoc,
+  doc,
 } from 'firebase/firestore';
 
 import { auth, db } from './firebase';
@@ -40,20 +42,32 @@ export function getUser(user) {
   return onAuthStateChanged(auth, user);
 }
 // funcion para guardar tareas/post en firestore
-export const saveTask = (title, description) => addDoc(collection(db, 'task'), { title, description });
+export const saveTask = (title, description, author) => addDoc(collection(db, 'task'), { title, description, author });
 
 export const getTask = async () => {
-  /* const getPost = collection(db, 'task');
-  const docSnap = await getDoc(getPost);
-  console.log(docSnap);
-  docSnap.forEach((doc) => {
-  console.log(doc.data());
-  }); */
+  
+
   const q = query(collection(db, 'task'));
 
   const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
+
+  querySnapshot.forEach((document) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, '=>', doc.data());
+    // console.log(doc.id, '=>', doc.data());
   });
 };
+export const obtenerPost = (callback) => onSnapshot(collection(db, 'task'), callback);
+
+export const savePost = (post) => {
+  const userId = auth.currentUser;
+  addDoc(saveTask, {
+    post,
+    userUid: userId.uid,
+    userName: userId.displayName,
+    userEmail: userId.email,
+    createdAt: new Date(),
+    // like: [],
+  });
+};
+export const getPost = (id) => getDoc(doc(db, 'task', id));
+export const updatePost = (id, newInfo) => updateDoc(doc(db, 'task', id), newInfo);
